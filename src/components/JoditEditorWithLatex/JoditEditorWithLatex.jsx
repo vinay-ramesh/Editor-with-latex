@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import 'katex/dist/katex.min.css';
 import 'jodit/es5/jodit.min.css';
 import formulaIcon from "../../assets/fxx.webp"
+import "./JoditEditorWithLatex.css"
 
 const JoditEditorWithLatex = () => {
     const editor = useRef(null);
@@ -170,8 +171,8 @@ const JoditEditorWithLatex = () => {
     // Jodit configuration with custom button
     const config = useMemo(() => ({
         readonly: false,
-        height: 400,
-
+        height: "80vh",
+        width:"100%",
         extraButtons: [
             {
                 name: 'latex',
@@ -188,13 +189,14 @@ const JoditEditorWithLatex = () => {
     }), [showLatexDialog]);
 
     return (
-        <div>
-            <h2>Jodit Editor with LaTeX Support</h2>
+        <div className='editor'>
+            <h2>Jodit Editor with LaTeX/MathJax Support</h2>
             <JoditEditor
                 ref={editor}
                 config={config}
                 tabIndex={1}
             />
+            <button style={{padding:"10px", alignSelf:"flex-start"}}>Download file</button>
         </div>
     );
 };
