@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useCallback } from 'react';
 import JoditEditor from 'jodit-react';
 import katex from 'katex';
 import html2canvas from 'html2canvas';
@@ -9,8 +9,12 @@ import "./JoditEditorWithLatex.css"
 
 const JoditEditorWithLatex = () => {
     const editor = useRef(null);
+    const [questionContent, setQuestionContent] = useState("")
 
-    // Function to show LaTeX input dialog
+    const contentChange = useCallback((newContent) => {
+        setQuestionContent(newContent)
+    }, [])
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const showLatexDialog = (editorInstance) => {
         const dialog = editorInstance.dlg({
@@ -168,35 +172,72 @@ const JoditEditorWithLatex = () => {
         }
     };
 
-    // Jodit configuration with custom button
+    // Jodit configuration with custom button --
+    // const config = useMemo(() => ({
+    //     readonly: false,
+    //     height: "80vh",
+    //     width:"100%",
+    //     extraButtons: [
+    //         {
+    //             name: 'latex',
+    //             iconURL: formulaIcon,
+    //             tooltip: 'Insert LaTeX Formula',
+    //             exec: function (editor) {
+    //                 showLatexDialog(editor);
+    //             }
+    //         }
+    //     ],
+    //     uploader: {
+    //         insertImageAsBase64URI: true
+    //     },
+    // }), [showLatexDialog]);
+
     const config = useMemo(() => ({
         readonly: false,
         height: "80vh",
-        width:"100%",
-        extraButtons: [
-            {
+        width: "100%",
+        direction: 'ltr',
+        defaultFontSize: '14px',
+        defaultFontFamily: 'Calibre Body, sans-serif',
+        controls: {
+            latex: {
                 name: 'latex',
-                iconURL: formulaIcon,
+                iconURL: formulaIcon, // Make sure 'formulaIcon' is imported or defined.
                 tooltip: 'Insert LaTeX Formula',
                 exec: function (editor) {
-                    showLatexDialog(editor);
+                    showLatexDialog(editor); // Make sure 'showLatexDialog' is accessible.
                 }
             }
+        },
+        buttons: [
+            'bold', 'italic', 'underline', 'strikethrough', 'latex',
+            '|', 'ul', 'ol', 'indent', 'outdent', 'Line height', '|', 'font', 'fontsize',
+            'brush', 'paragraph', '|', 'image', '|', 'table', '|', 'align',
+            'undo', 'redo', '|', 'hr', 'eraser',
         ],
         uploader: {
             insertImageAsBase64URI: true
         },
     }), [showLatexDialog]);
 
+    const handleDownload = () => {
+        console.log("questionContent", questionContent)
+        const wrappedContent = `<div className='question_printable_text'>${questionContent}</div>`
+    }
+
     return (
         <div className='editor'>
-            <h2>Jodit Editor with LaTeX/MathJax Support</h2>
+            <h2>Editor with LaTeX/MathJax Support</h2>
             <JoditEditor
                 ref={editor}
                 config={config}
                 tabIndex={1}
+                onBlur={(newContent) => contentChange(newContent)}
             />
-            <button style={{padding:"10px", alignSelf:"flex-start"}}>Download file</button>
+            <button style={{ padding: "10px", alignSelf: "flex-start" }}
+                onClick={handleDownload}
+            >Download file
+            </button>
         </div>
     );
 };

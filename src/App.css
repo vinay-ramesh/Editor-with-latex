@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.jodit-container .jodit-wysiwyg {
+  text-align: left !important; /* Ensure text is left-aligned */
+}
+.jodit-wysiwyg {
+  font-family: 'Calibre Body', sans-serif;
+  font-size: 14px;
+  line-height: 1;
+}
