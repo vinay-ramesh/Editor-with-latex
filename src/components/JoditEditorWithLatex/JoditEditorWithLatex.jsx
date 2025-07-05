@@ -172,33 +172,11 @@ const JoditEditorWithLatex = () => {
         }
     };
 
-    // Jodit configuration with custom button --
-    // const config = useMemo(() => ({
-    //     readonly: false,
-    //     height: "80vh",
-    //     width:"100%",
-    //     extraButtons: [
-    //         {
-    //             name: 'latex',
-    //             iconURL: formulaIcon,
-    //             tooltip: 'Insert LaTeX Formula',
-    //             exec: function (editor) {
-    //                 showLatexDialog(editor);
-    //             }
-    //         }
-    //     ],
-    //     uploader: {
-    //         insertImageAsBase64URI: true
-    //     },
-    // }), [showLatexDialog]);
-
     const config = useMemo(() => ({
         readonly: false,
         height: "80vh",
         width: "60vw",
         direction: 'ltr',
-        defaultFontSize: '14px',
-        defaultFontFamily: 'Calibre Body, sans-serif',
         controls: {
             latex: {
                 name: 'latex',
