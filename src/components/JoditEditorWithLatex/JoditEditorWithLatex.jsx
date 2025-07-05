@@ -252,7 +252,7 @@ const JoditEditorWithLatex = () => {
 
             URL.revokeObjectURL(url);
         } else {
-            return alert("Download complete! Just kidding...there's nothing to download.")
+            return alert("Download complete🍾! Just kidding...there's nothing to download.😇")
         }
     };
 
