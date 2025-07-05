@@ -245,7 +245,7 @@ const JoditEditorWithLatex = () => {
 
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'question-content.html';
+            link.download = `${new Date()}-question-content.html`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
