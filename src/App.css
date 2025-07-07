@@ -39,9 +39,27 @@
 
 .jodit-container .jodit-wysiwyg {
   text-align: left !important; /* Ensure text is left-aligned */
+  max-width: 60vw;
 }
 .jodit-wysiwyg {
   font-family: 'Calibre Body', sans-serif;
   font-size: 14px;
-  line-height: 1;
+  line-height: 1.5;
+}
+.jodit-wysiwyg img {
+  vertical-align: middle;
+}
+/* jodit-custom.css */
+.jodit-toolbar-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+}
+
+.jodit-toolbar-button svg {
+  max-width: 16px !important;
+  max-height: 16px !important;
+  fill: currentColor !important;
 }
