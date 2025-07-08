@@ -28,14 +28,14 @@ const JoditEditorWithLatex = () => {
                 left: -9999px;
                 top: -9999px;
                 background: white;
-                padding: 0px; /* IMPORTANT: Removed padding */
+                padding: 4px; /* IMPORTANT: Removed padding */
                 font-size: 24px;
             `;
 
             // 2. Find the KaTeX element and remove its margin
             const katexElement = tempDiv.querySelector('.katex-display');
             if (katexElement) {
-                katexElement.style.margin = '0'; // IMPORTANT: Override KaTeX default margin
+                katexElement.style.margin = '4'; // IMPORTANT: Override KaTeX default margin
             }
 
             document.body.appendChild(tempDiv);
