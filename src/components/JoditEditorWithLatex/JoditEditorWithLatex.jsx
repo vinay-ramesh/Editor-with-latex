@@ -51,7 +51,9 @@ const JoditEditorWithLatex = () => {
                     img.setAttribute('alt', `LaTeX: ${latexCode}`);
                     img.style.verticalAlign = 'middle';
                     img.style.maxWidth = '100%';
-                    img.style.height = `${canvas.height / 3}px`; // Scale down the image in the editor
+                    // img.style.height = `${canvas.height / 3}px`; // Scale down the image in the editor == original
+                    /* Decided to scale down the heiht some more by 3*2 = 6 times */
+                    img.style.height = `${canvas.height / 6}px`; // Scale down the image in the editor
 
                     // Use Jodit's reliable API to insert the image
                     editorInstance.s.insertImage(img, false, null);

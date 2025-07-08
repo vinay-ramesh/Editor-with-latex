@@ -63,3 +63,8 @@
   max-height: 16px !important;
   fill: currentColor !important;
 }
+
+.jodit-wysiwyg p{
+  margin: 0;
+  padding: 0;
+}
