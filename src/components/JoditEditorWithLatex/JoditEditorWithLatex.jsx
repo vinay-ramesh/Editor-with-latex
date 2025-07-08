@@ -153,6 +153,7 @@ const JoditEditorWithLatex = () => {
             tooltip: 'Insert LaTeX Formula',
             exec: (editor) => showLatexDialog(editor)
         }],
+        statusbar:false
         // 3. REMOVED custom event handlers that were causing conflicts.
         // events: {
         //     click: saveCursorPosition,
