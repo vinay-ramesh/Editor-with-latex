@@ -16,23 +16,30 @@ const JoditEditorWithLatex = () => {
         try {
             const html = katex.renderToString(latexCode, {
                 throwOnError: false,
-                displayMode: true,
+                displayMode: true, // Renders the formula as a block element
             });
 
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = html;
-            // Crucial styles for high-quality rendering
+
+            // 1. Set padding to 0 on the container div
             tempDiv.style.cssText = `
                 position: absolute;
                 left: -9999px;
                 top: -9999px;
                 background: white;
-                padding: 20px;
-                font-size: 24px; /* Render at a larger font size */
-                line-height: 1.6;
+                padding: 0px; /* IMPORTANT: Removed padding */
+                font-size: 24px;
             `;
-            document.body.appendChild(tempDiv);
 
+            // 2. Find the KaTeX element and remove its margin
+            const katexElement = tempDiv.querySelector('.katex-display');
+            if (katexElement) {
+                katexElement.style.margin = '0'; // IMPORTANT: Override KaTeX default margin
+            }
+
+            document.body.appendChild(tempDiv);
+    
             // Use a short timeout to ensure fonts are rendered
             setTimeout(() => {
                 html2canvas(tempDiv, {
