@@ -171,7 +171,7 @@ const JoditEditorWithLatex = () => {
 
     return (
         <div className='editor'>
-            <h2>Custom Editor with LaTeX/MathJax Support -- FIXED</h2>
+            <h2>Custom Editor with LaTeX/MathJax Support</h2>
             <JoditEditor
                 ref={editor}
                 value={questionContent}
